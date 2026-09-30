@@ -44,13 +44,11 @@ type PortfolioProject = {
 };
 
 const navigation = [
-  ["Home", "#top"],
-  ["Services", "#services"],
-  ["Portfolio", "#portfolio"],
-  ["About", "#about"],
-  ["Testimonials", "#testimonials"],
-  ["FAQ", "#faq"],
-  ["Contact", "#contact"],
+  ["Home", "/#top"],
+  ["About Us", "/#about"],
+  ["Contact Us", "/#contact"],
+  ["Testimonials", "/testimonials"],
+  ["Portfolio", "/#portfolio"],
 ] as const;
 
 const services: { number: string; title: string; description: string; icon: LucideIcon }[] = [
@@ -289,7 +287,7 @@ function Index() {
               <p className="mt-7 max-w-2xl text-lg leading-relaxed text-navy-muted sm:text-xl">From websites and branding to search visibility, email systems, traffic, and conversions, Ron Digital helps businesses create a stronger digital presence and connect with the right customers.</p>
               <div className="mt-9 flex flex-wrap gap-3">
                 <a href="#contact" className="inline-flex items-center gap-2 rounded-lg bg-brand px-6 py-3.5 font-semibold text-brand-foreground transition-colors hover:bg-brand-glow">Book a Consultation <ArrowUpRight className="size-4" /></a>
-                <a href="#services" className="inline-flex items-center gap-2 rounded-lg border border-background/20 px-6 py-3.5 font-semibold text-background transition-colors hover:border-brand-glow hover:text-brand-glow">Explore Our Services</a>
+                <a href="#portfolio" className="inline-flex items-center gap-2 rounded-lg border border-background/20 px-6 py-3.5 font-semibold text-background transition-colors hover:border-brand-glow hover:text-brand-glow">View Our Work</a>
               </div>
               <p className="mt-10 flex items-center gap-3 text-sm text-navy-muted"><Check className="size-4 text-brand-glow" />Practical digital solutions built around your business goals.</p>
             </div>
