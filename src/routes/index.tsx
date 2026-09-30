@@ -23,9 +23,6 @@ import {
 import { useState, type FormEvent } from "react";
 
 import ronLogo from "@/assets/ron-digital-logo.png";
-import davidPortrait from "@/assets/ron-client-david.jpg";
-import mayaPortrait from "@/assets/ron-client-maya.jpg";
-import sofiaPortrait from "@/assets/ron-client-sofia.jpg";
 
 type Filter = "All" | "Store Growth" | "Email" | "Branding" | "Technical" | "Paid Ads" | "Social Media" | "SEO";
 
@@ -197,32 +194,6 @@ const portfolioProjects: PortfolioProject[] = [
 
 const portfolioFilters: Filter[] = ["All", "Store Growth", "Email", "Branding", "Technical", "Paid Ads", "Social Media", "SEO"];
 
-const processSteps = [
-  ["01", "Consultation", "We learn about your business, goals, and current challenges.", ClipboardList],
-  ["02", "Strategy", "We identify the right solution and create a clear plan.", Compass],
-  ["03", "Build", "We develop and implement the agreed solution.", Code2],
-  ["04", "Optimize", "We review the results and identify opportunities for improvement.", Workflow],
-] as const;
-
-const testimonials = [
-  [mayaPortrait, "Example placeholder", "Business owner", "Ron Digital helped us create a much clearer online presence and gave us better direction for reaching our customers."],
-  [davidPortrait, "Example placeholder", "Marketing lead", "The process felt practical from the first conversation, with clear next steps instead of unnecessary complexity."],
-  [sofiaPortrait, "Example placeholder", "Founder", "A thoughtful digital partner for businesses that want to build, connect, and grow with confidence."],
-] as const;
-
-const faqs = [
-  ["What services does Ron Digital offer?", "We offer SEO, website design, email marketing and automation, traffic optimization, conversion optimization, branding, and consultation."],
-  ["How can Ron Digital help my business?", "We connect the right digital improvements to your business goals, helping you become easier to find, easier to trust, and easier to choose."],
-  ["Do you design websites from scratch?", "Yes. We can shape a new website from strategy through launch, including its structure, content direction, design, and conversion path."],
-  ["Can you improve my existing website?", "Yes. We can review what is working, identify friction, and recommend focused improvements rather than starting over unnecessarily."],
-  ["Do you provide email marketing and automation?", "Yes. We can help plan email journeys, write useful follow-ups, and organize automations around your customer journey."],
-  ["Can you help improve my website conversions?", "Yes. We look at the experience, messaging, calls to action, and key paths so more of the right visitors take the next step."],
-  ["Can your services be customized?", "Absolutely. Every recommendation is shaped around your audience, goals, timeline, and current systems."],
-  ["How much does a project cost?", "Projects start from $500. The final price depends on the scope, requirements, and level of support your project needs."],
-  ["What is the minimum project budget?", "Our projects start from $500. A consultation helps us match the right starting point to your priorities."],
-  ["How do I get started?", "Send a project request or email rondigital.team@gmail.com. We will review your goals and suggest a practical next step."],
-] as const;
-
 const budgetOptions = ["$500 – $1,000", "$1,000 – $2,500", "$2,500 – $5,000", "$5,000+"] as const;
 
 export const Route = createFileRoute("/")({
@@ -243,7 +214,6 @@ function Index() {
   const [submitted, setSubmitted] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState<Filter>("All");
-  const [budget, setBudget] = useState<(typeof budgetOptions)[number]>(budgetOptions[0]);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
