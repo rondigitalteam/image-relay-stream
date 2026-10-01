@@ -26,6 +26,16 @@ import ronLogo from "@/assets/ron-digital-logo.png";
 import davidPortrait from "@/assets/ron-client-david.jpg";
 import mayaPortrait from "@/assets/ron-client-maya.jpg";
 import sofiaPortrait from "@/assets/ron-client-sofia.jpg";
+import shot111 from "@/assets/portfolio/portfolio-111.png.asset.json";
+import shot112 from "@/assets/portfolio/portfolio-112.png.asset.json";
+import shot113 from "@/assets/portfolio/portfolio-113.png.asset.json";
+import shot114 from "@/assets/portfolio/portfolio-114.png.asset.json";
+import shot115 from "@/assets/portfolio/portfolio-115.png.asset.json";
+import shot116 from "@/assets/portfolio/portfolio-116.png.asset.json";
+import shot117 from "@/assets/portfolio/portfolio-117.png.asset.json";
+import shot118 from "@/assets/portfolio/portfolio-118.png.asset.json";
+import shot119 from "@/assets/portfolio/portfolio-119.png.asset.json";
+import shot120 from "@/assets/portfolio/portfolio-120.png.asset.json";
 
 type Filter = "All" | "Store Growth" | "Email" | "Branding" | "Technical" | "Paid Ads" | "Social Media" | "SEO";
 
@@ -41,6 +51,7 @@ type PortfolioProject = {
   services: readonly string[];
   quote: string;
   attribution: string;
+  images?: readonly { src: string; alt: string }[];
 };
 
 const navigation = [
@@ -86,6 +97,10 @@ const portfolioProjects: PortfolioProject[] = [
     services: ["Store Management", "Traffic Optimization", "Sales Strategy", "Analytics"],
     quote: "Our store performance was transformed. The results speak for themselves — sales nearly doubled!",
     attribution: "Cross Toss Trading Team",
+    images: [
+      { src: shot111.url, alt: "Cross Toss Trading Shopify dashboard, last 30 days: 5,260 sessions and $9,860 in sales" },
+      { src: shot112.url, alt: "Cross Toss Trading Shopify dashboard, last 7 days overview" },
+    ],
   },
   {
     category: "Email",
@@ -104,6 +119,16 @@ const portfolioProjects: PortfolioProject[] = [
     services: ["Klaviyo Email Flows", "Email Campaigns", "Google Tag Manager", "Store Audit", "Store Redesign"],
     quote: "The email automation is incredible. We're recovering sales we would have lost and customers love the personalized experience.",
     attribution: "Autumn Bliss Market Owner",
+    images: [
+      { src: shot113.url, alt: "Autumn Bliss Market Shopify dashboard: 1,809 sessions, +276%" },
+      { src: shot117.url, alt: "Autumn Bliss Market Shopify dashboard, last 7 days" },
+      { src: shot114.url, alt: "Klaviyo business performance summary: $1,702 total revenue" },
+      { src: shot115.url, alt: "Klaviyo email flows: abandoned cart, browse abandonment, winback and welcome series" },
+      { src: shot116.url, alt: "Klaviyo campaigns list including the Black Friday email campaign" },
+      { src: shot118.url, alt: "Autumn Bliss Market store with 15% off sign-up pop-up" },
+      { src: shot119.url, alt: "Store audit report with 100/100 SSL, content and mobile scores" },
+      { src: shot120.url, alt: "Google Tag Manager workspace for autumnblissmarket.com" },
+    ],
   },
   {
     category: "Branding",
@@ -342,6 +367,14 @@ function Index() {
                       <p className="mt-1 text-xs text-navy-muted">{result.note}</p>
                     </div>)}
                   </div>
+                  {project.images && project.images.length > 0 && <div className="mt-6">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-brand-glow">Proof of results</p>
+                    <div className="mt-3 flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2">
+                      {project.images.map((image) => <a key={image.src} href={image.src} target="_blank" rel="noreferrer" className="w-[85%] shrink-0 snap-start overflow-hidden rounded-lg border border-background/10 bg-background sm:w-[70%]">
+                        <img src={image.src} alt={image.alt} loading="lazy" className="block h-auto w-full object-contain" />
+                      </a>)}
+                    </div>
+                  </div>}
                 </div>
                 <details className="group">
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-sm font-semibold sm:px-7">
