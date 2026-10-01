@@ -36,6 +36,12 @@ import shot117 from "@/assets/portfolio/portfolio-117.png.asset.json";
 import shot118 from "@/assets/portfolio/portfolio-118.png.asset.json";
 import shot119 from "@/assets/portfolio/portfolio-119.png.asset.json";
 import shot120 from "@/assets/portfolio/portfolio-120.png.asset.json";
+import shot136 from "@/assets/portfolio/portfolio-136.png.asset.json";
+import shot137 from "@/assets/portfolio/portfolio-137.png.asset.json";
+import shot138 from "@/assets/portfolio/portfolio-138.png.asset.json";
+import shot139 from "@/assets/portfolio/portfolio-139.png.asset.json";
+import shot140 from "@/assets/portfolio/portfolio-140.png.asset.json";
+import shot141 from "@/assets/portfolio/portfolio-141.png.asset.json";
 
 type Filter = "All" | "Store Growth" | "Email" | "Branding" | "Technical" | "Paid Ads" | "Social Media" | "SEO";
 
@@ -147,6 +153,9 @@ const portfolioProjects: PortfolioProject[] = [
     services: ["Store Rebrand", "Visual Design", "UX Optimization", "Localization"],
     quote: "Die Besten Produkte für Pelzige Freunde — Our new store perfectly captures our brand mission!",
     attribution: "Oliver Ormans, Owner",
+    images: [
+      { src: shot136.url, alt: "Haustierbedarf4You redesigned German store homepage" },
+    ],
   },
   {
     category: "Technical",
@@ -165,6 +174,10 @@ const portfolioProjects: PortfolioProject[] = [
     services: ["SSL Certificate Setup", "Security Configuration", "Domain Verification", "Technical Fixes"],
     quote: "Our customers can now shop with confidence. No more security warnings — just smooth, secure checkout.",
     attribution: "XIT Offroad Team",
+    images: [
+      { src: shot137.url, alt: "SSL certificate setup and verification for xitoffroad.com" },
+      { src: shot138.url, alt: "SSL Verified confirmation screen" },
+    ],
   },
   {
     category: "Paid Ads",
@@ -183,6 +196,9 @@ const portfolioProjects: PortfolioProject[] = [
     services: ["Google Ads Management", "Campaign Optimization", "Conversion Tracking", "Ad Copywriting"],
     quote: "Our patient bookings have skyrocketed since launching these Google Ads campaigns.",
     attribution: "Soma Dental Team",
+    images: [
+      { src: shot139.url, alt: "Google Ads dashboard: 1,598 conversions at 21.68% conversion rate" },
+    ],
   },
   {
     category: "Social Media",
@@ -201,6 +217,9 @@ const portfolioProjects: PortfolioProject[] = [
     services: ["Facebook Ads", "Instagram Ads", "Audience Targeting", "Creative Strategy"],
     quote: "The reach we achieved with our advertising budget exceeded all expectations. Great ROI!",
     attribution: "Tropix Beverages Marketing Team",
+    images: [
+      { src: shot140.url, alt: "Facebook and Instagram ads dashboard: 175K reach, 144K impressions" },
+    ],
   },
   {
     category: "SEO",
@@ -219,6 +238,9 @@ const portfolioProjects: PortfolioProject[] = [
     services: ["SEO Audit", "On-Page Optimization", "Meta Data", "Content Strategy"],
     quote: "Our organic traffic has steadily increased since implementing the SEO recommendations.",
     attribution: "Urban Pet Club Owner",
+    images: [
+      { src: shot141.url, alt: "SEO on-page audit for Urban Pet Club: 78% score" },
+    ],
   },
 ];
 
