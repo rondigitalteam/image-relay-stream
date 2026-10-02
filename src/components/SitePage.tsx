@@ -341,6 +341,75 @@ export function SitePage({ section }: { section: SiteSection }) {
           </div>
         </section>}
 
+        {section === "home" && <>
+          <section className="border-b border-border bg-background py-16 md:py-20">
+            <div className="page-grid grid gap-6 sm:grid-cols-3">
+              {[
+                ["50+", "Projects Delivered", "Stores, websites, email systems, ad campaigns and technical fixes completed for businesses across e-commerce, health, pets and beverages."],
+                ["98%", "Client Satisfaction", "Most clients come back for more work or refer us, because we communicate clearly, meet deadlines and focus on results they can see."],
+                ["5+", "Years of Experience", "Years spent building, fixing and growing online stores — learning what actually moves sales, not just what looks good."],
+              ].map(([value, label, note]) => (
+                <div key={label} className="rounded-xl border border-border bg-card p-7">
+                  <p className="display-font text-5xl font-extrabold text-brand">{value}</p>
+                  <p className="mt-3 text-lg font-semibold text-ink">{label}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-muted">{note}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section className="bg-background py-20 md:py-24">
+            <div className="page-grid">
+              <span className="eyebrow text-brand">What we do</span>
+              <h2 className="display-font mt-3 max-w-3xl text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">Our Core Services</h2>
+              <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-muted">Everything your online business needs to get found, look professional, keep customers coming back and turn visitors into buyers — handled by one team that understands how each piece connects.</p>
+              <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                {services.map(({ number, title, description, icon: Icon }) => (
+                  <div key={title} className="rounded-xl border border-border bg-card p-7 transition-colors hover:border-brand">
+                    <div className="flex items-center justify-between"><span className="grid size-11 place-items-center rounded-lg bg-brand-soft text-brand"><Icon className="size-5" /></span><span className="text-sm font-semibold text-ink-muted">{number}</span></div>
+                    <h3 className="mt-6 text-xl font-bold text-ink">{title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-ink-muted">{description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="bg-sky-wash py-20 md:py-24">
+            <div className="page-grid grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+              <div>
+                <span className="eyebrow text-brand">Why choose us</span>
+                <h2 className="display-font mt-3 text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">Why You Can Trust Ron Digital</h2>
+                <p className="mt-5 text-lg leading-relaxed text-ink-muted">We treat your business like our own. Every decision is made to help you earn more, save time and build a brand customers remember.</p>
+              </div>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {[
+                  ...features,
+                  ["Proven Results", "Real dashboards from real clients — sales, conversions and audit scores you can see in our portfolio."],
+                  ["Clear Communication", "Regular updates in plain language, so you always know what's being done and why."],
+                ].map(([title, text]) => (
+                  <div key={title} className="rounded-xl border border-border bg-card p-6">
+                    <span className="grid size-9 place-items-center rounded-full bg-brand-soft text-brand"><Check className="size-4" /></span>
+                    <h3 className="mt-4 font-bold text-ink">{title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-ink-muted">{text}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="navy-surface py-20 text-background md:py-24">
+            <div className="page-grid text-center">
+              <h2 className="display-font mx-auto max-w-3xl text-4xl font-extrabold tracking-tight sm:text-5xl">Ready to Grow Your E-commerce Business?</h2>
+              <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-navy-muted">Whether you're launching a new store or need more sales from the one you have, we'll review your setup, find what's holding you back and give you a clear plan to grow. Your first consultation is the easiest step.</p>
+              <div className="mt-9 flex flex-wrap justify-center gap-3">
+                <a href="/contact" className="inline-flex items-center gap-2 rounded-lg bg-brand px-6 py-3.5 font-semibold text-brand-foreground transition-colors hover:bg-brand-glow">Book a Free Consultation <ArrowUpRight className="size-4" /></a>
+                <a href="/portfolio" className="inline-flex items-center gap-2 rounded-lg border border-background/20 px-6 py-3.5 font-semibold text-background transition-colors hover:border-brand-glow hover:text-brand-glow">See Our Results</a>
+              </div>
+            </div>
+          </section>
+        </>}
+
         {section === "about" && <section id="about" className="page-grid grid scroll-mt-24 gap-10 py-20 md:py-24 lg:grid-cols-2 lg:items-center">
           <div><span className="eyebrow">About us</span><h2 className="display-font mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">Who We Are</h2><p className="mt-5 max-w-xl leading-relaxed text-ink-muted">Ron Digital is a digital solutions team helping businesses build a stronger online presence. We combine strategy, design, visibility and thoughtful customer journeys to help businesses connect with their audience.</p><p className="mt-4 max-w-xl leading-relaxed text-ink-muted">Our purpose is simple: create practical digital solutions that help businesses grow. Creating Solutions. Building Connections.</p></div>
           <div className="grid gap-3 sm:grid-cols-2">{features.map(([title, description], index) => <div key={title} className="rounded-xl border border-border bg-background p-6 shadow-sm"><div className="flex items-center justify-between"><span className="grid size-9 place-items-center rounded-lg bg-brand-soft text-brand"><Check className="size-4" /></span><span className="text-xs font-semibold text-ink-muted">0{index + 1}</span></div><h3 className="display-font mt-5 font-bold">{title}</h3><p className="mt-2 text-sm leading-relaxed text-ink-muted">{description}</p></div>)}</div>
