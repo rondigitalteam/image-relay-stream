@@ -7,11 +7,11 @@ import mayaPortrait from "@/assets/ron-client-maya.jpg";
 import sofiaPortrait from "@/assets/ron-client-sofia.jpg";
 
 const navigation = [
-  ["Home", "/#top"],
-  ["About Us", "/#about"],
-  ["Contact Us", "/#contact"],
+  ["Home", "/"],
+  ["About Us", "/about"],
+  ["Contact Us", "/contact"],
   ["Testimonials", "/testimonials"],
-  ["Portfolio", "/#portfolio"],
+  ["Portfolio", "/portfolio"],
 ] as const;
 
 const testimonials = [
@@ -39,7 +39,7 @@ function TestimonialsPage() {
     <div className="app-surface min-h-screen text-ink antialiased">
       <header className="sticky top-0 z-30 border-b border-border/70 bg-background/90 backdrop-blur-md">
         <div className="page-grid flex min-h-20 flex-wrap items-center justify-between gap-4 py-2">
-          <a href="/#top" aria-label="Ron Digital home"><img src={ronLogo} alt="Ron Digital" className="h-12 w-auto md:h-14" /></a>
+          <a href="/" aria-label="Ron Digital home"><img src={ronLogo} alt="Ron Digital" className="h-12 w-auto md:h-14" /></a>
           <nav className="flex flex-wrap gap-4 text-sm text-ink-muted" aria-label="Main navigation">
             {navigation.map(([label, href]) => <a key={href} href={href} className={href === "/testimonials" ? "font-semibold text-brand" : "hover:text-brand"}>{label}</a>)}
           </nav>
