@@ -61,10 +61,10 @@ type PortfolioProject = {
 
 const navigation = [
   ["Home", "/"],
-  ["About Us", "/about"],
-  ["Contact Us", "/contact"],
   ["Testimonials", "/testimonials"],
   ["Portfolio", "/portfolio"],
+  ["About Us", "/about"],
+  ["Contact Us", "/contact"],
 ] as const;
 
 const services: { number: string; title: string; description: string; icon: LucideIcon }[] = [

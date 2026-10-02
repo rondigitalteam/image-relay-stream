@@ -8,10 +8,10 @@ import sofiaPortrait from "@/assets/ron-client-sofia.jpg";
 
 const navigation = [
   ["Home", "/"],
-  ["About Us", "/about"],
-  ["Contact Us", "/contact"],
   ["Testimonials", "/testimonials"],
   ["Portfolio", "/portfolio"],
+  ["About Us", "/about"],
+  ["Contact Us", "/contact"],
 ] as const;
 
 const testimonials = [
