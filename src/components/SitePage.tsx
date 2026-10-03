@@ -20,6 +20,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { useState, type FormEvent } from "react";
+import { sendContactMessage } from "@/lib/contact.functions";
 
 import ronLogo from "@/assets/ron-digital-logo.png";
 import davidPortrait from "@/assets/ron-client-david.jpg";
@@ -282,9 +283,25 @@ export function SitePage({ section }: { section: SiteSection }) {
   const [activeFilter, setActiveFilter] = useState<Filter>("All");
   const [budget, setBudget] = useState<(typeof budgetOptions)[number]>(budgetOptions[0]);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState("");
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSubmitted(true);
+    const form = event.currentTarget;
+    const fd = Object.fromEntries(new FormData(form)) as Record<string, string>;
+    setSending(true);
+    setSendError("");
+    try {
+      await sendContactMessage({ data: { ...fd, budget: fd.budget || budget } as never });
+      setSubmitted(true);
+      form.reset();
+    } catch (err) {
+      console.error(err);
+      setSendError("Sorry, your message couldn't be sent. Please email us at rondigital.team@gmail.com.");
+    } finally {
+      setSending(false);
+    }
   }
 
   const visibleProjects = activeFilter === "All" ? portfolioProjects : portfolioProjects.filter((project) => project.category === activeFilter);
