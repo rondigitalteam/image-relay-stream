@@ -293,7 +293,7 @@ export function SitePage({ section }: { section: SiteSection }) {
     setSending(true);
     setSendError("");
     try {
-      await sendContactMessage({ data: { ...fd, budget: fd.budget || budget } as never });
+      await sendContactMessage({ data: { ...fd, budget: fd['budget'] || budget } as never });
       setSubmitted(true);
       form.reset();
     } catch (err) {

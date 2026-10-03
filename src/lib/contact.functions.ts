@@ -17,10 +17,10 @@ const esc = (s: string) =>
 export const sendContactMessage = createServerFn({ method: "POST" })
   .inputValidator((data) => schema.parse(data))
   .handler(async ({ data }) => {
-    const apiKey = process.env.RESEND_API_KEY;
+    const apiKey = process.env['RESEND_API_KEY'];
     if (!apiKey) throw new Error("RESEND_API_KEY is not configured");
-    const to = process.env.CONTACT_TO_EMAIL || "rondigital.team@gmail.com";
-    const from = process.env.CONTACT_FROM_EMAIL || "Ron Digital <onboarding@resend.dev>";
+    const to = process.env['CONTACT_TO_EMAIL'] || "rondigital.team@gmail.com";
+    const from = process.env['CONTACT_FROM_EMAIL'] || "Ron Digital <onboarding@resend.dev>";
 
     const rows = Object.entries(data)
       .map(([k, v]) => `<tr><td style="padding:4px 12px 4px 0"><b>${esc(k)}</b></td><td>${esc(String(v || "-")).replace(/\n/g, "<br>")}</td></tr>`)
