@@ -20,6 +20,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { useState, type FormEvent } from "react";
+import { sendContactMessage } from "@/lib/contact.functions";
 
 import ronLogo from "@/assets/ron-digital-logo.png";
 import davidPortrait from "@/assets/ron-client-david.jpg";
@@ -282,9 +283,25 @@ export function SitePage({ section }: { section: SiteSection }) {
   const [activeFilter, setActiveFilter] = useState<Filter>("All");
   const [budget, setBudget] = useState<(typeof budgetOptions)[number]>(budgetOptions[0]);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState("");
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSubmitted(true);
+    const form = event.currentTarget;
+    const fd = Object.fromEntries(new FormData(form)) as Record<string, string>;
+    setSending(true);
+    setSendError("");
+    try {
+      await sendContactMessage({ data: { ...fd, budget: fd['budget'] || budget } as never });
+      setSubmitted(true);
+      form.reset();
+    } catch (err) {
+      console.error(err);
+      setSendError("Sorry, your message couldn't be sent. Please email us at rondigital.team@gmail.com.");
+    } finally {
+      setSending(false);
+    }
   }
 
   const visibleProjects = activeFilter === "All" ? portfolioProjects : portfolioProjects.filter((project) => project.category === activeFilter);
@@ -478,7 +495,7 @@ export function SitePage({ section }: { section: SiteSection }) {
 
 
 
-        {section === "contact" && <section id="contact" className="scroll-mt-20 navy-surface py-20 text-background md:py-24"><div className="page-grid grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start"><div><span className="eyebrow text-brand-glow">Start a conversation</span><h2 className="display-font mt-3 text-4xl font-extrabold tracking-tight sm:text-5xl">Let's Build Something That Works</h2><p className="mt-5 max-w-lg text-lg leading-relaxed text-navy-muted">Have a project, idea, or digital challenge? Tell us what you’re working on and let’s discuss how Ron Digital can help.</p><div className="mt-10 flex items-center gap-3 text-sm text-navy-muted"><span className="grid size-10 place-items-center rounded-lg bg-background/10 text-brand-glow"><Mail className="size-4" /></span><a href="mailto:rondigital.team@gmail.com" className="hover:text-brand-glow">rondigital.team@gmail.com</a></div><p className="mt-5 text-sm text-navy-muted">Prefer email? <a href="mailto:rondigital.team@gmail.com" className="text-brand-glow hover:underline">rondigital.team@gmail.com</a></p></div><form onSubmit={handleSubmit} className="rounded-xl border border-background/10 bg-background/[0.06] p-6 backdrop-blur-sm sm:p-8"><div className="grid gap-4 sm:grid-cols-2"><Field label="Full Name" name="name" placeholder="Your name" required dark /><Field label="Business Name" name="business" placeholder="Your business" dark /></div><div className="mt-4 grid gap-4 sm:grid-cols-2"><Field label="Email Address" name="email" type="email" placeholder="you@business.com" required dark /><Field label="Phone Number" name="phone" type="tel" placeholder="Optional" dark /></div><div className="mt-4 grid gap-4 sm:grid-cols-2"><SelectField label="Service Needed" name="service" options={services.map((service) => service.title).concat("Other")} dark /><SelectField label="Project Budget" name="budget" options={[...budgetOptions]} dark /></div><label className="mt-4 block text-xs font-semibold uppercase tracking-wide text-navy-muted">Message<textarea name="message" rows={4} placeholder="Tell us a little about what you’re working on..." required className="mt-1.5 w-full resize-none rounded-lg border border-background/15 bg-background/10 px-4 py-3 text-sm font-normal normal-case tracking-normal text-background outline-none placeholder:text-navy-muted focus:border-brand-glow focus:ring-2 focus:ring-brand-glow/30" /></label><button type="submit" className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-brand py-3.5 font-semibold text-brand-foreground transition-colors hover:bg-brand-glow">{submitted ? <>Request received <Check className="size-4" /></> : <>Send Project Request <ArrowUpRight className="size-4" /></>}</button>{submitted && <p role="status" className="mt-3 text-center text-sm text-brand-glow">Thanks — we’ll be in touch soon.</p>}</form></div></section>}
+        {section === "contact" && <section id="contact" className="scroll-mt-20 navy-surface py-20 text-background md:py-24"><div className="page-grid grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start"><div><span className="eyebrow text-brand-glow">Start a conversation</span><h2 className="display-font mt-3 text-4xl font-extrabold tracking-tight sm:text-5xl">Let's Build Something That Works</h2><p className="mt-5 max-w-lg text-lg leading-relaxed text-navy-muted">Have a project, idea, or digital challenge? Tell us what you’re working on and let’s discuss how Ron Digital can help.</p><div className="mt-10 flex items-center gap-3 text-sm text-navy-muted"><span className="grid size-10 place-items-center rounded-lg bg-background/10 text-brand-glow"><Mail className="size-4" /></span><a href="mailto:rondigital.team@gmail.com" className="hover:text-brand-glow">rondigital.team@gmail.com</a></div><p className="mt-5 text-sm text-navy-muted">Prefer email? <a href="mailto:rondigital.team@gmail.com" className="text-brand-glow hover:underline">rondigital.team@gmail.com</a></p></div><form onSubmit={handleSubmit} className="rounded-xl border border-background/10 bg-background/[0.06] p-6 backdrop-blur-sm sm:p-8"><div className="grid gap-4 sm:grid-cols-2"><Field label="Full Name" name="name" placeholder="Your name" required dark /><Field label="Business Name" name="business" placeholder="Your business" dark /></div><div className="mt-4 grid gap-4 sm:grid-cols-2"><Field label="Email Address" name="email" type="email" placeholder="you@business.com" required dark /><Field label="Phone Number" name="phone" type="tel" placeholder="Optional" dark /></div><div className="mt-4 grid gap-4 sm:grid-cols-2"><SelectField label="Service Needed" name="service" options={services.map((service) => service.title).concat("Other")} dark /><SelectField label="Project Budget" name="budget" options={[...budgetOptions]} dark /></div><label className="mt-4 block text-xs font-semibold uppercase tracking-wide text-navy-muted">Message<textarea name="message" rows={4} placeholder="Tell us a little about what you’re working on..." required className="mt-1.5 w-full resize-none rounded-lg border border-background/15 bg-background/10 px-4 py-3 text-sm font-normal normal-case tracking-normal text-background outline-none placeholder:text-navy-muted focus:border-brand-glow focus:ring-2 focus:ring-brand-glow/30" /></label><button type="submit" disabled={sending} className="mt-4 inline-flex disabled:opacity-60 w-full items-center justify-center gap-2 rounded-lg bg-brand py-3.5 font-semibold text-brand-foreground transition-colors hover:bg-brand-glow">{sending ? <>Sending...</> : submitted ? <>Request received <Check className="size-4" /></> : <>Send Project Request <ArrowUpRight className="size-4" /></>}</button>{submitted && <p role="status" className="mt-3 text-center text-sm text-brand-glow">Thanks — we’ll be in touch soon.</p>}{sendError && <p role="alert" className="mt-3 text-center text-sm text-destructive">{sendError}</p>}</form></div></section>}
 
       </main>
 
